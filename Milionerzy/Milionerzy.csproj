@@ -8,11 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="setting.png" />
+    <None Remove="images\background.jpg" />
+    <None Remove="images\setting.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="setting.png" />
+    <Resource Include="images\background.jpg">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\setting.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

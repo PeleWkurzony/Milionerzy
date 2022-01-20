@@ -10,15 +10,18 @@
         <Style x:Key="GridStyle1" TargetType="{x:Type Grid}"/>
     </Window.Resources>
     <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="/images/background.jpg"/>
+        </Grid.Background>
         <Grid x:Name="form_menu" Style="{DynamicResource GridStyle1}">
-            <Label x:Name="Logo" Content="Jeden z Dziesięciu" HorizontalAlignment="Center" Margin="0,29,0,0" VerticalAlignment="Top" Height="140" Width="460" FontSize="48" FontWeight="Bold" FontStyle="Italic" FontStretch="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <Button x:Name="ui_host_game" Content="Utwórz grę" HorizontalAlignment="Center" Margin="0,217,0,15" VerticalAlignment="Top" Height="40" Width="180" Background="#00DDDDDD"/>
-            <Button x:Name="ui_find_game" Content="Znajdź grę" HorizontalAlignment="Center" Margin="0,274,0,0" VerticalAlignment="Top" Height="40" Width="180" Background="#00DDDDDD"/>
-            <Button x:Name="ui_exit" Content="Wyjdź z gry" HorizontalAlignment="Center" Margin="0,384,0,0" VerticalAlignment="Top" Height="40" Width="180" Background="#00DDDDDD"/>
+            <Label x:Name="Logo" Content="Jeden z Dziesięciu" HorizontalAlignment="Center" Margin="0,29,0,0" VerticalAlignment="Top" Height="140" Width="460" FontSize="48" FontWeight="Bold" FontStyle="Italic" FontStretch="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White"/>
+            <Button x:Name="ui_host_game" Content="Utwórz grę" HorizontalAlignment="Center" Margin="0,217,0,15" VerticalAlignment="Top" Height="40" Width="180" Foreground="White" Background="#66DDDDDD"/>
+            <Button x:Name="ui_find_game" Content="Znajdź grę" HorizontalAlignment="Center" Margin="0,274,0,0" VerticalAlignment="Top" Height="40" Width="180" Background="#66DDDDDD" Foreground="White"/>
+            <Button x:Name="ui_exit" Content="Wyjdź z gry" HorizontalAlignment="Center" Margin="0,384,0,0" VerticalAlignment="Top" Height="40" Width="180" Background="#66DDDDDD" Foreground="White"/>
             <Grid HorizontalAlignment="Center" Margin="0,329,0,0" VerticalAlignment="Top" Width="179">
-                <Button x:Name="ui_credits" Content="Autorzy" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="116" Background="#00DDDDDD"/>
-                <Button x:Name="ui_credits_Copy" HorizontalAlignment="Left" VerticalAlignment="Center" Height="40" Width="52" Background="#00DDDDDD" Margin="127,0,0,0">
-                    <Image Source="/setting.png"/>
+                <Button x:Name="ui_credits" Content="Autorzy" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="116" Background="#66DDDDDD" Foreground="White"/>
+                <Button x:Name="ui_settings" HorizontalAlignment="Left" VerticalAlignment="Center" Height="40" Width="52" Background="#66DDDDDD" Margin="127,0,0,0" Foreground="White">
+                    <Image x:Name="img_setting" Source="/images/setting.png"/>
                 </Button>
             </Grid>
         </Grid>
