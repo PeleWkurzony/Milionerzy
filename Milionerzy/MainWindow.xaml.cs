@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Milionerzy.Windows;
+using Milionerzy.Scripts;
+
 namespace Milionerzy
 {
     /// <summary>
@@ -20,9 +23,39 @@ namespace Milionerzy
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
-        {
+        //UC - skrót od User Control
+        public UC_menu UCmenu;
+        public UC_start_game UCstartGame;
+        public UC_credits UCcredits;
+        public UC_settings UCsettings;
+
+
+
+        public MainWindow() {
             InitializeComponent();
+            UCmenu = new UC_menu(this);
+            UCstartGame = new UC_start_game(this);
+            UCcredits = new UC_credits(this);
+            UCsettings = new UC_settings(this);
+
+
+            ReturnToMenu();
+
+        }
+        /// <summary>
+        /// Wyświetla kontrolki dla menu
+        /// </summary>
+        public void ReturnToMenu() {
+            this.userContent.Children.Clear();
+            this.userContent.Children.Add(UCmenu);
+        }
+        /// <summary>
+        /// Wyświetla konkretne kontrolki dzięki polimorfizmowi
+        /// </summary>
+        /// <param name="userControl"> Kontrolka klasy User Control </param>
+        public void SwitchTo(UserControl userControl) {
+            this.userContent.Children.Clear();
+            this.userContent.Children.Add(userControl);
         }
 
     }
