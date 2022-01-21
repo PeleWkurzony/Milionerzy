@@ -15,22 +15,15 @@ using System.Windows.Shapes;
 
 namespace Milionerzy.Windows {
     /// <summary>
-    /// Logika interakcji dla klasy UC_start_game.xaml
+    /// Logika interakcji dla klasy UC_game.xaml
     /// </summary>
-    public partial class UC_start_game : UserControl {
+    public partial class UC_game : UserControl {
 
-        MainWindow parent;
-        public UC_start_game(MainWindow parent) {
+        public MainWindow parent;
+
+        public UC_game(MainWindow parent) {
             InitializeComponent();
             this.parent = parent;
-        }
-
-        private void ui_start_game_Click(object sender, RoutedEventArgs e) {
-            parent.SwitchTo(parent.UCgame);
-        }
-
-        private void ui_back_button_Click(object sender, RoutedEventArgs e) {
-            parent.ReturnToMenu();
         }
     }
 }

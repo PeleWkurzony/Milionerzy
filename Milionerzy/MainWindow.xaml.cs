@@ -28,7 +28,7 @@ namespace Milionerzy
         public UC_start_game UCstartGame;
         public UC_credits UCcredits;
         public UC_settings UCsettings;
-
+        public UC_game UCgame;
 
 
         public MainWindow() {
@@ -37,13 +37,14 @@ namespace Milionerzy
             UCstartGame = new UC_start_game(this);
             UCcredits = new UC_credits(this);
             UCsettings = new UC_settings(this);
+            UCgame = new UC_game(this);
 
 
             ReturnToMenu();
 
         }
         /// <summary>
-        /// Wyświetla kontrolki dla menu
+        /// Przechodzi do kontrolek Menu
         /// </summary>
         public void ReturnToMenu() {
             this.userContent.Children.Clear();
@@ -52,7 +53,9 @@ namespace Milionerzy
         /// <summary>
         /// Wyświetla konkretne kontrolki dzięki polimorfizmowi
         /// </summary>
-        /// <param name="userControl"> Kontrolka klasy User Control </param>
+        /// <param name="userControl"> 
+        /// Kontrolka klasy User Control, która ma zostać wyświetlona
+        /// </param>
         public void SwitchTo(UserControl userControl) {
             this.userContent.Children.Clear();
             this.userContent.Children.Add(userControl);
