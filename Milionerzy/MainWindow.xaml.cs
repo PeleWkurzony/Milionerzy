@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using Milionerzy.Windows;
-using Milionerzy.Scripts;
 
 namespace Milionerzy
 {

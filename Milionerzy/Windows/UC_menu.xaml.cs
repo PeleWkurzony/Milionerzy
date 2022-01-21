@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Milionerzy.Windows {
     /// <summary>
     /// Logika interakcji dla klasy UC_menu.xaml
@@ -26,6 +27,10 @@ namespace Milionerzy.Windows {
 
         private void ui_start_game_Click(object sender, RoutedEventArgs e) {
             parent.SwitchTo(parent.UCstartGame);
+        }
+
+        private void ui_exit_Click(object sender, RoutedEventArgs e) {
+
         }
     }
 }
