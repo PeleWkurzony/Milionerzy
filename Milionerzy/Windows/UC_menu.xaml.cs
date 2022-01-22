@@ -28,9 +28,14 @@ namespace Milionerzy.Windows {
         private void ui_start_game_Click(object sender, RoutedEventArgs e) {
             parent.SwitchTo(parent.UCstartGame);
         }
+        private void ui_credits_Click(object sender, RoutedEventArgs e) {
+            parent.SwitchTo(parent.UCcredits);
+        }
 
         private void ui_exit_Click(object sender, RoutedEventArgs e) {
 
         }
+
+        
     }
 }

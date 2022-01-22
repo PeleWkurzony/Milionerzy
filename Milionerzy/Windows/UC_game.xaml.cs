@@ -33,10 +33,11 @@ namespace Milionerzy.Windows {
 
         private bool fiftyFifty = true;
         private bool audienceQuestion = true;
-        private bool friendTalk = true;
+        private bool friendsTalk = true;
 
-
-        private ulong time = 0;
+        private double time = 0;
+        private bool canAnswer = true;
+        private uint questionNumer = 1;
 
         public UC_game(MainWindow parent) {
             InitializeComponent();
@@ -45,25 +46,28 @@ namespace Milionerzy.Windows {
             buttons = new List<Button> { ui_answer_a, ui_answer_b, ui_answer_c, ui_answer_d };
         }
         private void SetUpAnswers(Question question) {
-            var generator = new Random();
-            correctAnswerPos = generator.Next(4);
-            buttons[correctAnswerPos].Content = question.poprawna;
-            List<int> positions = new List<int> { 0, 1, 2, 3 };
-            positions.Remove(correctAnswerPos);
+            this.Dispatcher.Invoke(() => {
+                var generator = new Random();
+                correctAnswerPos = generator.Next(4);
+                buttons[correctAnswerPos].Content = question.poprawna;
+                List<int> positions = new List<int> { 0, 1, 2, 3 };
+                positions.Remove(correctAnswerPos);
 
-            for (int i = 0; i < 3; i++) {
-                var r = new Random();
-                int randomInt = r.Next(positions.Count);
-                buttons[positions[randomInt]].Content = question.niepoprawne[i];
-                positions.RemoveAt(randomInt);
+                for (int i = 0; i < 3; i++) {
+                    var r = new Random();
+                    int randomInt = r.Next(positions.Count);
+                    buttons[positions[randomInt]].Content = question.niepoprawne[i];
+                    positions.RemoveAt(randomInt);
 
-            }
-
+                }
+            });
         }
-        private void LoadQuestion(object sender, RoutedEventArgs e) {
-            question = controller.GetQuestion();
-            SetUpAnswers(question);
-            ui_question.Content = question.pytanie;
+        private void LoadQuestion(object? sender, RoutedEventArgs? e) {
+            this.Dispatcher.Invoke(() => {
+                question = controller.GetQuestion();
+                SetUpAnswers(question);
+                ui_question.Content = question.pytanie;
+            });
         }
         private void SetUpTimer(object sender, RoutedEventArgs e) {
             Timer timer = new Timer(1000);
@@ -74,9 +78,9 @@ namespace Milionerzy.Windows {
         }
         private void OnTimerChange(object? sender, EventArgs? e) {
             this.Dispatcher.Invoke(() => {
-                time++;
-                ulong minutes = (time / 60ul);
-                short seconds = (short)(time % 60ul);
+                time += 0.5;
+                ulong minutes = (ulong) (time / 60);
+                short seconds = (short) (time % 60);
                 String minStr = minutes.ToString();
                 String secStr = seconds.ToString();
                 if (minutes < 10) {
@@ -90,12 +94,34 @@ namespace Milionerzy.Windows {
             });
         }
         private void CheckAnswer(int button) {
-            if (button != correctAnswerPos) {
-                buttons[button].Background = new SolidColorBrush(Color.FromArgb(200, 173, 36, 26));
-            }
-            else {
-                buttons[button].Background = new SolidColorBrush(Color.FromArgb(200, 38, 163, 0));
-            }
+            this.Dispatcher.Invoke(() => { 
+                if (!canAnswer) return;
+                canAnswer = false;
+                //For wrong answer
+                if (button != correctAnswerPos) {
+                    buttons[button].Background = new SolidColorBrush(Color.FromArgb(200, 173, 36, 26));
+                    buttons[correctAnswerPos].Background = new SolidColorBrush(Color.FromArgb(200, 38, 163, 0));
+                    Task.Delay(5000).ContinueWith(t => {
+                        this.parent.SwitchTo(parent.UCendGame);
+                    });
+                }
+                //For good answer
+                else {
+                  buttons[button].Background = new SolidColorBrush(Color.FromArgb(200, 0xC0, 0xFF, 0));
+                    Task.Delay(5000).ContinueWith(t => {
+                        questionNumer++;
+                        this.Dispatcher.Invoke(() => { 
+                            ui_counter.Content = "Pytanie nr. " + questionNumer;
+                        });
+                        LoadQuestion(null, null);
+                        this.Dispatcher.Invoke(() => { 
+                            buttons[button].Background = new SolidColorBrush(Color.FromArgb(0x99, 0xDD, 0xDD, 0xDD));
+                        });
+                        canAnswer = true;
+                    });
+                
+                }
+            });
         }
         private void ui_answer_a_Click(object sender, RoutedEventArgs e) {
             CheckAnswer(0);
@@ -109,5 +135,6 @@ namespace Milionerzy.Windows {
         private void ui_answer_d_Click(object sender, RoutedEventArgs e) {
             CheckAnswer(3);
         }
+
     }
 }
