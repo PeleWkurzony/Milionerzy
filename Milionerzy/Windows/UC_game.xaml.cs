@@ -12,104 +12,88 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Data.SqlClient;
+using Milionerzy.Scripts;
+using System.Timers;
+
+
 
 namespace Milionerzy.Windows {
-    public class Row {
-        public Row(int i, String p, String[] n) {
-            this.id = i;
-            this.pytanie = p;
-            this.niepoprawne = n;
-        }
-
-        public int id;
-        public String pytanie;
-        public String[] niepoprawne;
-
-        
-    }
+    
 
     /// <summary>
     /// Logika interakcji dla klasy UC_game.xaml
     /// </summary>
     public partial class UC_game : UserControl {
 
-
-        /*
-                                                                              
-                   d888888o.    8 8888 8 8888      88 8 888888888o.   8 888888888o.   
-                 .`8888:' `88.  8 8888 8 8888      88 8 8888    `88.  8 8888    `88.  
-                 8.`8888.   Y8  8 8888 8 8888      88 8 8888     `88  8 8888     `88  
-                 `8.`8888.      8 8888 8 8888      88 8 8888     ,88  8 8888     ,88  
-                  `8.`8888.     8 8888 8 8888      88 8 8888.   ,88'  8 8888.   ,88'  
-                   `8.`8888.    8 8888 8 8888      88 8 888888888P'   8 888888888P'   
-                    `8.`8888.   8 8888 8 8888      88 8 8888`8b       8 8888`8b       
-                8b   `8.`8888.  8 8888 ` 8888     ,8P 8 8888 `8b.     8 8888 `8b.     
-                `8b.  ;8.`8888  8 8888   8888   ,d8P  8 8888   `8b.   8 8888   `8b.   
-                 `Y8888P ,88P'  8 8888    `Y88888P'   8 8888     `88. 8 8888     `88. 
-
-        */
         public MainWindow parent;
 
-        private String question = "";
-        private String answer = "";
-        private String[] wrongAnswers = { "", "", "" };
+        private DB_controller controller;
 
-        private static List<int> previousQuestions = new List<int>();
+        private Question? question;
+        private List<Button> buttons;
+        private int correctAnswerPos;
+
+        private bool fiftyFifty = true;
+        private bool audienceQuestion = true;
+        private bool friendTalk = true;
+
+
+        private ulong time = 0;
 
         public UC_game(MainWindow parent) {
             InitializeComponent();
             this.parent = parent;
+            controller = new DB_controller();
+            buttons = new List<Button> { ui_answer_a, ui_answer_b, ui_answer_c, ui_answer_d };
         }
-        /// <summary>
-        /// Funkcja pomocnicza do tworzenia zapytań SQL
-        /// </summary>
-        /// <returns> Zwraca String, który jest sformatowany, aby wstawić go do zapytania </returns>
-        private String PrintList() {
-            String toReturn = " WHERE ID NOT IN (";
-            foreach (int id in previousQuestions) {
-                toReturn += id.ToString() + ",";
+
+        private void SetUpAnswers(Question question) {
+            var generator = new Random();
+            correctAnswerPos = generator.Next(4);
+            buttons[correctAnswerPos].Content = question.poprawna;
+            List<int> positions = new List<int> { 0, 1, 2, 3 };
+            positions.Remove(correctAnswerPos);
+
+            for (int i = 0; i < 3; i++) {
+                var r = new Random();
+                int randomInt = r.Next(positions.Count);
+                buttons[positions[randomInt]].Content = question.niepoprawne[i];
+                positions.RemoveAt(randomInt);
+
             }
-            try {
-                toReturn = toReturn.Remove(toReturn.Length - 1);
-            } catch (Exception) { return ""; }
-            return toReturn + ")";
+
         }
-        
-        private bool DownloadQuestion() {
-            try {
-                var builder = new SqlConnectionStringBuilder();
 
-                builder.DataSource = "localhost";
-                builder.UserID = "root";
-                builder.Password = "";
-                builder.InitialCatalog = "milionerzy";
+        private void LoadQuestion(object sender, RoutedEventArgs e) {
+            question = controller.GetQuestion();
+            SetUpAnswers(question);
+            ui_question.Content = question.pytanie;
+        }
 
-                using (var conn = new SqlConnection(builder.ConnectionString)) {
-                    String sql = "SELECT ID, pytanie, poprawna, npoprawna1, npoprawna2, npoprawna3 FROM milionerzy" + PrintList();
-                    conn.Open();
+        private void SetUpTimer(object sender, RoutedEventArgs e) {
+            Timer timer = new Timer(1000);
+            timer.Interval = 1000;
+            timer.Elapsed += OnTimerChange;
+            timer.AutoReset = true;
+            timer.Enabled = true;
+        }
 
-                    using (var cmd = new SqlCommand(sql, conn)) {
-                        using (var dataReader = cmd.ExecuteReader()) {
-                            while (dataReader.Read()) {
-                                Row row = new Row(dataReader.GetInt32(0), dataReader.GetString(1), new String[] { dataReader.GetString(2), dataReader.GetString(3), dataReader.GetString(4) });
-                            }
-                        }
-                    }
+        private void OnTimerChange(object? sender, EventArgs? e) {
+            this.Dispatcher.Invoke(() => {
+                time++;
+                ulong minutes = (time / 60ul);
+                short seconds = (short)(time % 60ul);
+                String minStr = minutes.ToString();
+                String secStr = seconds.ToString();
+                if (minutes < 10) {
+                    
+                    minStr = "0" + minutes.ToString();
                 }
-            } catch (SqlException e) {
-                Window w = new Window();
-                var txt = new TextBox();
-                txt.Text = e.Message;
-                w.Content = txt;
-                w.Show();
-                return false;
-            }
-            return true;
-        }
-
-        private void DownloadQuestion(object sender, RoutedEventArgs e) {
-            DownloadQuestion();
+                if (seconds < 10) {
+                    secStr = "0" + seconds.ToString();
+                }
+                ui_timer.Content = "Czas: " + minStr + ":" + secStr;
+            });
         }
     }
 }
