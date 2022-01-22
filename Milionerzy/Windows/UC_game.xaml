@@ -40,28 +40,28 @@
                 </StackPanel>
             </Button>
         </Grid>
-        <Button x:Name="ui_answer_c" Content="Button" Margin="80,367,0,0" Height="35" Width="260" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#99DDDDDD">
+        <Button x:Name="ui_answer_c" Content="Button" Margin="80,367,0,0" Height="35" Width="260" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#99DDDDDD" Click="ui_answer_c_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="ui_answer_b" Content="Button" Margin="0,321,80,0" Height="35" VerticalAlignment="Top" HorizontalAlignment="Right" Width="260" Background="#99DDDDDD">
+        <Button x:Name="ui_answer_b" Content="Button" Margin="0,321,80,0" Height="35" VerticalAlignment="Top" HorizontalAlignment="Right" Width="260" Background="#99DDDDDD" Click="ui_answer_b_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="ui_answer_d" Content="Button" Margin="0,367,80,0" Height="35" Width="260" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#99DDDDDD">
+        <Button x:Name="ui_answer_d" Content="Button" Margin="0,367,80,0" Height="35" Width="260" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#99DDDDDD" Click="ui_answer_d_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="ui_answer_a" Content="Button" Margin="80,321,0,0" Height="35" Width="260" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#99DDDDDD">
+        <Button x:Name="ui_answer_a" Content="Button" Margin="80,321,0,0" Height="35" Width="260" VerticalAlignment="Top" HorizontalAlignment="Left" Click="ui_answer_a_Click" Background="#99DDDDDD">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10"/>

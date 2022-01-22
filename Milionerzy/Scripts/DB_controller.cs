@@ -21,9 +21,6 @@ namespace Milionerzy.Scripts {
     /// </summary>
     public class DB_controller {
 
-        
-        
-
         /// <summary>
         /// Lista id pytań, które już zostały wykorzystane
         /// </summary>
@@ -55,7 +52,6 @@ namespace Milionerzy.Scripts {
             connStr = "server=" + host + ";user=" + user + ";database=" + database + ";port=" + port + ";password=" + password;
             DownloadQuestions();
         }
-
         /// <summary>
         /// Zwraca jedno pytanie z bazy danych bez powtórek
         /// </summary>
@@ -68,16 +64,12 @@ namespace Milionerzy.Scripts {
             questions.RemoveAt(random);
             return toReturn;
         }
-
         /*  -----------------------------------------------------------------------------------------------------
          * 
          *              Private
          * 
          *  -----------------------------------------------------------------------------------------------------   
          */
-
-
-
         /// <summary>
         /// Funkcja pomocnicza do tworzenia zapytań SQL
         /// </summary>
@@ -96,8 +88,6 @@ namespace Milionerzy.Scripts {
                 return "";
             }
         }
-
-        
         /// <summary>
         /// Pobiera wszystkie pytania z bazy danych i zapisuje je w zmiennej questions
         /// </summary>
