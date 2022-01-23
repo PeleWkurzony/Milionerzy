@@ -56,13 +56,36 @@ namespace Milionerzy.Scripts {
         /// Zwraca jedno pytanie z bazy danych bez powtórek
         /// </summary>
         /// <returns> Obiekt Question zawierający najważniejsze informacje o pytaniu </returns>
-        public Question GetQuestion() { 
+        public Question? GetQuestion() {
+            if (questions.Count == 0) return null;
             var generator = new Random();
             int random = generator.Next(questions.Count);
             Question toReturn = questions[random];
             previousQuestions.Add(toReturn.id);
             questions.RemoveAt(random);
             return toReturn;
+        }
+        public void SaveResult(Result result) {
+            try {
+
+                var conn = new MySqlConnection(connStr);
+                conn.Open();
+                String sql = $"INSERT INTO ranking VALUES" +
+                    $"(NULL, \"{result.name}\", {result.time}, {result.questionId}, \"{result.chosenAnswer}\", " +
+                    $"{result.questionNumer} );";
+                var command = new MySqlCommand(sql, conn);
+                var smt = command.ExecuteScalar();
+
+
+            } catch (Exception e) {
+                Window w = new Window();
+                w.Height = 300;
+                w.Width = 300;
+                var txt = new TextBox();
+                txt.Text = e.Message;
+                w.Content = txt;
+                w.Show();
+            }
         }
         /*  -----------------------------------------------------------------------------------------------------
          * 

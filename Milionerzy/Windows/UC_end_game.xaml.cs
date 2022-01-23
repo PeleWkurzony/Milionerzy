@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Milionerzy.Scripts;
 
 namespace Milionerzy.Windows {
     /// <summary>
@@ -19,12 +20,25 @@ namespace Milionerzy.Windows {
     /// </summary>
     public partial class UC_end_game : UserControl {
         MainWindow parent;
+
+        private float time;
+        private uint questionNumer;
+        private String wrongAnswer;
+        private DB_controller controller;
+
         public UC_end_game(MainWindow parent) {
             InitializeComponent();
             this.parent = parent;
+            controller = new DB_controller();
         }
         private void ui_back_button_Click(object sender, RoutedEventArgs e) {
             parent.Close();
+        }
+
+        private void OnLoad(object sender, RoutedEventArgs e) {
+            Result game = parent.UCgame.GetResult();
+            controller.SaveResult(game);
+
         }
     }
 }

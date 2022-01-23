@@ -26,7 +26,14 @@ namespace Milionerzy.Windows {
         }
 
         private void ui_start_game_Click(object sender, RoutedEventArgs e) {
-            parent.SwitchTo(parent.UCgame);
+            if (ui_nickname.Text == "") {
+                ui_nickname.BorderBrush = new SolidColorBrush(Color.FromRgb(191, 25, 0));
+                ui_nickname.BorderThickness = new Thickness(2);
+            }
+            else {
+                parent.SwitchTo(parent.UCgame);
+            }
+            
         }
 
         private void ui_back_button_Click(object sender, RoutedEventArgs e) {

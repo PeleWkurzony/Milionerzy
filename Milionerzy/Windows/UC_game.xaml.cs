@@ -15,9 +15,10 @@ using System.Windows.Shapes;
 using Milionerzy.Scripts;
 using System.Timers;
 
+
+
 namespace Milionerzy.Windows {
     
-
     /// <summary>
     /// Logika interakcji dla klasy UC_game.xaml
     /// </summary>
@@ -39,11 +40,26 @@ namespace Milionerzy.Windows {
         private bool canAnswer = true;
         private uint questionNumer = 1;
 
+        private Timer? timer;
+        private int chosenAnswer;
+        private String nickname;
+
         public UC_game(MainWindow parent) {
             InitializeComponent();
             this.parent = parent;
             controller = new DB_controller();
             buttons = new List<Button> { ui_answer_a, ui_answer_b, ui_answer_c, ui_answer_d };
+            nickname = parent.UCstartGame.ui_nickname.Text;
+        }
+        public Result GetResult() {
+            Result result = new Result();
+            result.time = time;
+            result.questionNumer = questionNumer;
+            result.questionId = question.id;
+            result.chosenAnswer = buttons[chosenAnswer].Content.ToString();
+            result.name = nickname;
+            return result;
+
         }
         private void SetUpAnswers(Question question) {
             this.Dispatcher.Invoke(() => {
@@ -70,7 +86,7 @@ namespace Milionerzy.Windows {
             });
         }
         private void SetUpTimer(object sender, RoutedEventArgs e) {
-            Timer timer = new Timer(1000);
+            timer = new Timer(1000);
             timer.Interval = 1000;
             timer.Elapsed += OnTimerChange;
             timer.AutoReset = true;
@@ -97,8 +113,10 @@ namespace Milionerzy.Windows {
             this.Dispatcher.Invoke(() => { 
                 if (!canAnswer) return;
                 canAnswer = false;
+                chosenAnswer = button;
                 //For wrong answer
                 if (button != correctAnswerPos) {
+                    timer.Elapsed -= OnTimerChange;
                     buttons[button].Background = new SolidColorBrush(Color.FromArgb(200, 173, 36, 26));
                     buttons[correctAnswerPos].Background = new SolidColorBrush(Color.FromArgb(200, 38, 163, 0));
                     Task.Delay(5000).ContinueWith(t => {

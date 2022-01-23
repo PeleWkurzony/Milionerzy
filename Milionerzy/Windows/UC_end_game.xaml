@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Milionerzy.Windows"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="OnLoad">
     <Grid>
         <Label Content="Nazwa Gracza" HorizontalAlignment="Left" Height="40" Margin="10,16,0,0" VerticalAlignment="Top" Width="151" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center"/>
         <Label Content="Czas Rozgrywki" HorizontalAlignment="Left" Height="40" Margin="291,16,0,0" VerticalAlignment="Top" Width="160" Foreground="White" FontSize="20" FontWeight="Bold"/>

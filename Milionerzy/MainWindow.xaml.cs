@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using Milionerzy.Windows;
+using Milionerzy.Scripts;
 
 namespace Milionerzy
 {
@@ -38,7 +39,6 @@ namespace Milionerzy
             UCsettings = new UC_settings(this);
             UCgame = new UC_game(this);
             UCendGame = new UC_end_game(this);
-
             ReturnToMenu();
         }
         /// <summary>
