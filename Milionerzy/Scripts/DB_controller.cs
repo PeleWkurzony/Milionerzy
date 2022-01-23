@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Milionerzy.Windows;
+using Stats = Milionerzy.Windows.UC_end_game.Stats;
 
 namespace Milionerzy.Scripts {
     /// <summary>
@@ -71,11 +73,11 @@ namespace Milionerzy.Scripts {
                 var conn = new MySqlConnection(connStr);
                 conn.Open();
                 String sql = $"INSERT INTO ranking VALUES" +
-                    $"(NULL, \"{result.name}\", {result.time}, {result.questionId}, \"{result.chosenAnswer}\", " +
+                    $"(NULL, \"{result.name}\", {result.time}, {result.questionId}, \'{result.chosenAnswer}\', " +
                     $"{result.questionNumer} );";
                 var command = new MySqlCommand(sql, conn);
                 var smt = command.ExecuteScalar();
-
+                conn.Close();
 
             } catch (Exception e) {
                 Window w = new Window();
@@ -86,6 +88,46 @@ namespace Milionerzy.Scripts {
                 w.Content = txt;
                 w.Show();
             }
+        }
+        public List<Stats> GetStats(uint number) {
+            var list = new List<Stats>();
+            try {
+
+                var conn = new MySqlConnection(connStr);
+                conn.Open();
+                String sql = $"SELECT nazwa, czas_rozgrywki, ilosc_dobrych_odp FROM ranking WHERE ilosc_dobrych_odp >= {number} ORDER BY ilosc_dobrych_odp ASC , czas_rozgrywki ASC  LIMIT 2;";
+                var command = new MySqlCommand(sql, conn);
+                var dataReader = command.ExecuteReader();
+                while (dataReader.Read()) {
+                    list.Add(new Stats(dataReader.GetString(0), (ulong)dataReader.GetInt32(1), (uint)dataReader.GetInt32(2)));
+                }
+
+                if (list.Count == 2) {
+                    var s = list[0];
+                    list[0] = list[1];
+                    list[1] = s;
+                }
+
+                dataReader.Close();
+
+                sql = $"SELECT nazwa, czas_rozgrywki, ilosc_dobrych_odp FROM ranking WHERE ilosc_dobrych_odp <= {number} ORDER BY ilosc_dobrych_odp DESC, czas_rozgrywki DESC LIMIT 2;";
+                command = new MySqlCommand(sql, conn);
+                dataReader = command.ExecuteReader();
+                while (dataReader.Read()) {
+                    list.Add(new Stats(dataReader.GetString(0), (ulong)dataReader.GetInt32(1), (uint)dataReader.GetInt32(2)));
+                }
+                conn.Close();
+
+            } catch (Exception e) {
+                Window w = new Window();
+                w.Height = 300;
+                w.Width = 300;
+                var txt = new TextBox();
+                txt.Text = e.Message;
+                w.Content = txt;
+                w.Show();
+            }
+            return list;
         }
         /*  -----------------------------------------------------------------------------------------------------
          * 
@@ -124,9 +166,9 @@ namespace Milionerzy.Scripts {
                 var command = new MySqlCommand(sql, conn);
                 var dataReader = command.ExecuteReader();
                 while (dataReader.Read()) {
-                    Question quest = new Question(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), new String[] { dataReader.GetString(3), dataReader.GetString(4), dataReader.GetString(5) });
-                    questions.Add(quest);
+                    questions.Add(new Question(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), new String[] { dataReader.GetString(3), dataReader.GetString(4), dataReader.GetString(5) }));
                 }
+                conn.Close();
 
             } catch (Exception e) {
                 Window w = new Window();

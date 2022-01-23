@@ -27,7 +27,6 @@ namespace Milionerzy
         public UC_menu UCmenu;
         public UC_start_game UCstartGame;
         public UC_credits UCcredits;
-        public UC_settings UCsettings;
         public UC_game UCgame;
         public UC_end_game UCendGame;
 
@@ -36,7 +35,6 @@ namespace Milionerzy
             UCmenu = new UC_menu(this);
             UCstartGame = new UC_start_game(this);
             UCcredits = new UC_credits(this);
-            UCsettings = new UC_settings(this);
             UCgame = new UC_game(this);
             UCendGame = new UC_end_game(this);
             ReturnToMenu();

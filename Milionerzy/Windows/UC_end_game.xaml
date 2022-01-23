@@ -7,13 +7,39 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Loaded="OnLoad">
     <Grid>
-        <Label Content="Nazwa Gracza" HorizontalAlignment="Left" Height="40" Margin="10,16,0,0" VerticalAlignment="Top" Width="151" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center"/>
-        <Label Content="Czas Rozgrywki" HorizontalAlignment="Left" Height="40" Margin="291,16,0,0" VerticalAlignment="Top" Width="160" Foreground="White" FontSize="20" FontWeight="Bold"/>
-        <Label Content="Ilosć Poprawnych Odpowiedzi" HorizontalAlignment="Left" Margin="527,16,0,0" VerticalAlignment="Top" Width="263" Height="40" Foreground="White" FontSize="20" RenderTransformOrigin="0.513,0.125" FontWeight="Bold"/>
-        <Label x:Name="ui_nazwa" Content="Label" HorizontalAlignment="Left" Height="40" Margin="0,61,0,0" VerticalAlignment="Top" Width="161" HorizontalContentAlignment="Center" FontSize="18" Foreground="#FFC0FF00" FontStyle="Italic" FontWeight="Bold"/>
-        <Label x:Name="ui_ilosc" Content="Label" HorizontalAlignment="Left" Height="40" Margin="527,63,0,0" VerticalAlignment="Top" Width="263" HorizontalContentAlignment="Center" FontSize="18" Foreground="#FFC0FF00" FontWeight="Bold" FontStyle="Italic"/>
-        <Label x:Name="ui_czas_rozgrywki" Content="Label" HorizontalAlignment="Left" Height="40" Margin="291,63,0,0" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="#FFC0FF00" FontStyle="Italic"/>
-        <Button x:Name="ui_back_button" Content="Wyjdź z gry" HorizontalAlignment="Left" Margin="86,0,0,50" VerticalAlignment="Bottom" Height="50" Width="130" Background="#66DDDDDD" Foreground="White" Click="ui_back_button_Click" FontSize="16" FontWeight="Normal" FontStyle="Italic" RenderTransformOrigin="1.1,0.3"/>
+        <Button x:Name="ui_back_button" Content="Wyjdź z gry" HorizontalAlignment="Left" Margin="86,0,0,50" VerticalAlignment="Bottom" Height="50" Width="130" Background="#66DDDDDD" Foreground="White" Click="ui_back_button_Click" FontSize="16" FontWeight="Normal" FontStyle="Italic" RenderTransformOrigin="1.1,0.3" Cursor="Hand"/>
+        <Grid x:Name="ui_players_names" Margin="4,15,529,210" Width="266.666666666667">
+            <Label Content="Nazwa Gracza" HorizontalAlignment="Center" Height="40" Margin="0,10,0,0" VerticalAlignment="Top" Width="151" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" BorderThickness="0,0,0,1" BorderBrush="#FFABADB3"/>
+            <TextBox x:Name="ui_player_name" TextWrapping="Wrap" VerticalAlignment="Top" Margin="40,135,35,0" Foreground="#FFD5FF57" Background="#CC4C4C4C" Height="20" FontStyle="Italic" FontWeight="Bold" AllowDrop="False" IsTabStop="False" IsHitTestVisible="False" Focusable="False"/>
+            <TextBox x:Name="ui_names_2" TextWrapping="Wrap" VerticalAlignment="Top" Margin="40,115,35,0" Foreground="#FFEEFFBD" Background="#7F7D7D7D" Height="20" AllowDrop="False" IsTabStop="False" IsHitTestVisible="False" Focusable="False"/>
+            <TextBox x:Name="ui_names_4" TextWrapping="Wrap" VerticalAlignment="Top" Margin="40,155,35,0" Foreground="#FFEEFFBD" Background="#7F7D7D7D" Height="20" AllowDrop="False" IsTabStop="False" IsHitTestVisible="False" Focusable="False"/>
+            <TextBox x:Name="ui_dots" TextWrapping="Wrap" Text="*  *  *  *   *   *" VerticalAlignment="Top" Margin="28,95,227,0" Foreground="#FFE2FF8A" Background="#4CFFFFFF" Height="100" TextAlignment="Center"/>
+            <TextBox x:Name="ui_names_1" TextWrapping="Wrap" VerticalAlignment="Top" Margin="40,95,35,0" Foreground="#FFEEFFBD" Background="#7F7D7D7D" Height="20" AllowDrop="False" IsTabStop="False" IsHitTestVisible="False" Focusable="False"/>
+            <TextBox x:Name="ui_names_5" TextWrapping="Wrap" VerticalAlignment="Top" Margin="40,175,35,0" Foreground="#FFEEFFBD" Background="#7F7D7D7D" Height="20" AllowDrop="False" IsTabStop="False" IsHitTestVisible="False" Focusable="False"/>
+        </Grid>
+        <Grid x:Name="ui_players_times" Margin="271,15,262,210" Width="266.666666666667">
+            <Label Content="Czas Rozgrywki" HorizontalAlignment="Center" Height="40" Margin="0,10,0,0" VerticalAlignment="Top" Width="161" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" BorderThickness="0,0,0,1" BorderBrush="#FFABADB3"/>
+            <TextBox x:Name="ui_player_time" TextWrapping="Wrap" VerticalAlignment="Top" Margin="40,135,35,0" Foreground="#FFD5FF57" Background="#CC4C4C4C" Height="20" FontStyle="Italic" FontWeight="Bold" AllowDrop="False" IsTabStop="False" IsHitTestVisible="False" Focusable="False"/>
+            <TextBox x:Name="ui_times_2" TextWrapping="Wrap" VerticalAlignment="Top" Margin="40,115,35,0" Foreground="#FFEEFFBD" Background="#7F7D7D7D" Height="20" AllowDrop="False" IsTabStop="False" IsHitTestVisible="False" Focusable="False"/>
+            <TextBox x:Name="ui_times_4" TextWrapping="Wrap" VerticalAlignment="Top" Margin="40,155,35,0" Foreground="#FFEEFFBD" Background="#7F7D7D7D" Height="20" AllowDrop="False" IsTabStop="False" IsHitTestVisible="False" Focusable="False"/>
+            <TextBox x:Name="ui_dots1" TextWrapping="Wrap" Text="*  *  *  *   *   *" VerticalAlignment="Top" Margin="28,95,227,0" Foreground="#FFE2FF8A" Background="#4CFFFFFF" Height="100" TextAlignment="Center" AllowDrop="False" Focusable="False" IsHitTestVisible="False" IsTabStop="False"/>
+            <TextBox x:Name="ui_times_1" TextWrapping="Wrap" VerticalAlignment="Top" Margin="40,95,35,0" Foreground="#FFEEFFBD" Background="#7F7D7D7D" Height="20" AllowDrop="False" IsTabStop="False" IsHitTestVisible="False" Focusable="False"/>
+            <TextBox x:Name="ui_times_5" TextWrapping="Wrap" VerticalAlignment="Top" Margin="40,175,35,0" Foreground="#FFEEFFBD" Background="#7F7D7D7D" Height="20" AllowDrop="False" IsTabStop="False" IsHitTestVisible="False" Focusable="False"/>
+        </Grid>
+        <Grid x:Name="ui_player_number_correct_answers" Margin="533,15,0,210" Width="266.666666666667">
+            <Label HorizontalAlignment="Center" Height="60" Margin="0,-10,0,0" VerticalAlignment="Top" Width="197" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center">
+                Ilosć Poprawnych
+            </Label>
+            <Label HorizontalAlignment="Center" Height="35" Margin="0,15,0,0" VerticalAlignment="Top" Width="197" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" BorderThickness="0,0,0,1" BorderBrush="#FFABADB3">
+                odpowiedzi
+            </Label>
+            <TextBox x:Name="ui_player_correct_a" TextWrapping="Wrap" VerticalAlignment="Top" Margin="40,135,35,0" Foreground="#FFD5FF57" Background="#CC4C4C4C" Height="20" FontStyle="Italic" FontWeight="Bold" AllowDrop="False" IsTabStop="False" IsHitTestVisible="False" Focusable="False"/>
+            <TextBox x:Name="ui_correct_a_2" TextWrapping="Wrap" VerticalAlignment="Top" Margin="40,115,35,0" Foreground="#FFEEFFBD" Background="#7F7D7D7D" Height="20" AllowDrop="False" IsTabStop="False" IsHitTestVisible="False" Focusable="False"/>
+            <TextBox x:Name="ui_correct_a_4" TextWrapping="Wrap" VerticalAlignment="Top" Margin="40,155,35,0" Foreground="#FFEEFFBD" Background="#7F7D7D7D" Height="20" AllowDrop="False" IsTabStop="False" IsHitTestVisible="False" Focusable="False"/>
+            <TextBox x:Name="ui_dots2" TextWrapping="Wrap" Text="*  *  *  *   *   *" VerticalAlignment="Top" Margin="28,95,227,0" Foreground="#FFE2FF8A" Background="#4CFFFFFF" Height="100" TextAlignment="Center" AllowDrop="False" Focusable="False" IsHitTestVisible="False" IsTabStop="False"/>
+            <TextBox x:Name="ui_correct_a_1" TextWrapping="Wrap" VerticalAlignment="Top" Margin="40,95,35,0" Foreground="#FFEEFFBD" Background="#7F7D7D7D" Height="20" AllowDrop="False" IsTabStop="False" IsHitTestVisible="False" Focusable="False"/>
+            <TextBox x:Name="ui_correct_a_5" TextWrapping="Wrap" VerticalAlignment="Top" Margin="40,175,35,0" Foreground="#FFEEFFBD" Background="#7F7D7D7D" Height="20" AllowDrop="False" IsTabStop="False" IsHitTestVisible="False" Focusable="False"/>
+        </Grid>
 
     </Grid>
 </UserControl>

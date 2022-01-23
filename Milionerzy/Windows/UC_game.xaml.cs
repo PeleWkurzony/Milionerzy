@@ -49,12 +49,11 @@ namespace Milionerzy.Windows {
             this.parent = parent;
             controller = new DB_controller();
             buttons = new List<Button> { ui_answer_a, ui_answer_b, ui_answer_c, ui_answer_d };
-            nickname = parent.UCstartGame.ui_nickname.Text;
         }
         public Result GetResult() {
             Result result = new Result();
             result.time = time;
-            result.questionNumer = questionNumer;
+            result.questionNumer = questionNumer - 1;
             result.questionId = question.id;
             result.chosenAnswer = buttons[chosenAnswer].Content.ToString();
             result.name = nickname;
@@ -80,9 +79,10 @@ namespace Milionerzy.Windows {
         }
         private void LoadQuestion(object? sender, RoutedEventArgs? e) {
             this.Dispatcher.Invoke(() => {
+                nickname = parent.UCstartGame.ui_nickname.Text;
                 question = controller.GetQuestion();
                 SetUpAnswers(question);
-                ui_question.Content = question.pytanie;
+                ui_question.Text = question.pytanie;
             });
         }
         private void SetUpTimer(object sender, RoutedEventArgs e) {
@@ -93,21 +93,23 @@ namespace Milionerzy.Windows {
             timer.Enabled = true;
         }
         private void OnTimerChange(object? sender, EventArgs? e) {
-            this.Dispatcher.Invoke(() => {
-                time += 0.5;
-                ulong minutes = (ulong) (time / 60);
-                short seconds = (short) (time % 60);
-                String minStr = minutes.ToString();
-                String secStr = seconds.ToString();
-                if (minutes < 10) {
-                    
-                    minStr = "0" + minutes.ToString();
-                }
-                if (seconds < 10) {
-                    secStr = "0" + seconds.ToString();
-                }
-                ui_timer.Content = "Czas: " + minStr + ":" + secStr;
-            });
+            try {
+                this.Dispatcher.Invoke(() => {
+                    time += 0.5;
+                    ulong minutes = (ulong)(time / 60);
+                    short seconds = (short)(time % 60);
+                    String minStr = minutes.ToString();
+                    String secStr = seconds.ToString();
+                    if (minutes < 10) {
+
+                        minStr = "0" + minutes.ToString();
+                    }
+                    if (seconds < 10) {
+                        secStr = "0" + seconds.ToString();
+                    }
+                    ui_timer.Content = "Czas: " + minStr + ":" + secStr;
+                });
+            } catch (Exception) { }
         }
         private void CheckAnswer(int button) {
             this.Dispatcher.Invoke(() => { 
@@ -116,7 +118,7 @@ namespace Milionerzy.Windows {
                 chosenAnswer = button;
                 //For wrong answer
                 if (button != correctAnswerPos) {
-                    timer.Elapsed -= OnTimerChange;
+                    timer.Stop();
                     buttons[button].Background = new SolidColorBrush(Color.FromArgb(200, 173, 36, 26));
                     buttons[correctAnswerPos].Background = new SolidColorBrush(Color.FromArgb(200, 38, 163, 0));
                     Task.Delay(5000).ContinueWith(t => {

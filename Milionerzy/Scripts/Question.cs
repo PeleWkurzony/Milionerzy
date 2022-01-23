@@ -10,11 +10,11 @@ namespace Milionerzy.Scripts {
     /// Klasa przechowująca wszyskie wiersze pytania
     /// </summary>
     public class Question {
-        public Question(int i, String p, String pop, String[] n) {
-            this.id = i;
-            this.pytanie = p;
-            this.poprawna = pop;
-            this.niepoprawne = n;
+        public Question(int id, String pytanie, String poprawna, String[] niepoprawne) {
+            this.id = id;
+            this.pytanie = pytanie;
+            this.poprawna = poprawna;
+            this.niepoprawne = niepoprawne;
         }
 
         public int id;

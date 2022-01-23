@@ -7,8 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Loaded="LoadQuestion">
     <Grid VerticalAlignment="Center">
-        <Label x:Name="ui_timer" Content="Czas: 00:00" HorizontalAlignment="Left" Margin="80,50,0,0" VerticalAlignment="Top" Height="58" Width="160" Foreground="White" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Loaded="SetUpTimer"/>
-        <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,80,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="31*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="ui_timer" Content="Czas: 00:00" HorizontalAlignment="Left" Margin="80,50,0,0" VerticalAlignment="Top" Height="58" Width="160" Foreground="White" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Loaded="SetUpTimer" Grid.ColumnSpan="2"/>
+        <!--<Grid HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,80,0" Grid.Column="1">
             <Button x:Name="ui_powerup_222_Copy" Margin="90,0,0,0" Height="34" Width="35" VerticalAlignment="Center" HorizontalAlignment="Left">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
@@ -39,39 +43,38 @@
                     <TextBlock><Run Text="Cannot load image"/></TextBlock>
                 </StackPanel>
             </Button>
-        </Grid>
-        <Button x:Name="ui_answer_c" Content="Button" Margin="80,367,0,0" Height="35" Width="260" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#99DDDDDD" Click="ui_answer_c_Click">
+        </Grid>-->
+        <Button x:Name="ui_answer_c" Content="Button" Margin="80,367,0,0" Height="35" Width="260" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#99DDDDDD" Click="ui_answer_c_Click" Grid.ColumnSpan="2" Cursor="Hand">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="ui_answer_b" Content="Button" Margin="0,321,80,0" Height="35" VerticalAlignment="Top" HorizontalAlignment="Right" Width="260" Background="#99DDDDDD" Click="ui_answer_b_Click">
+        <Button x:Name="ui_answer_b" Content="Button" Margin="0,321,80,0" Height="35" VerticalAlignment="Top" HorizontalAlignment="Right" Width="260" Background="#99DDDDDD" Click="ui_answer_b_Click" Grid.Column="1" Cursor="Hand">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="ui_answer_d" Content="Button" Margin="0,367,80,0" Height="35" Width="260" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#99DDDDDD" Click="ui_answer_d_Click">
+        <Button x:Name="ui_answer_d" Content="Button" Margin="0,367,80,0" Height="35" Width="260" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#99DDDDDD" Click="ui_answer_d_Click" Grid.Column="1" Cursor="Hand">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="ui_answer_a" Margin="80,321,0,0" Height="35" Width="260" VerticalAlignment="Top" HorizontalAlignment="Left" Click="ui_answer_a_Click" Background="#99DDDDDD">
+        <Button x:Name="ui_answer_a" Margin="80,321,0,0" Height="35" Width="260" VerticalAlignment="Top" HorizontalAlignment="Left" Click="ui_answer_a_Click" Background="#99DDDDDD" Grid.ColumnSpan="2" Content="Button" Cursor="Hand">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10"/>
                 </Style>
             </Button.Resources>
-            <Label Content="Label"/>
         </Button>
-        <Border BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" CornerRadius="10,10,10,10" Margin="80,261,80,0" Background="#CCFFFFFF" HorizontalAlignment="Stretch">
-            <Label x:Name="ui_question" Content="Label" Margin="5,0,5,0" Background="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="50" BorderBrush="#FF707070"/>
+        <Border BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" CornerRadius="10,10,10,10" Margin="80,261,80,0" Background="#CCFFFFFF" Grid.ColumnSpan="2" Padding="0,10,0,0" Height="50">
+            <TextBlock x:Name="ui_question" HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="620" Height="47" TextAlignment="Center"/>
         </Border>
-        <Label x:Name="ui_counter" Content="Pytanie nr. 1" HorizontalAlignment="Left" Margin="580,221,0,0" VerticalAlignment="Top" Height="40" Width="140" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Loaded="SetUpTimer"/>
+        <Label x:Name="ui_counter" Content="Pytanie nr. 1" HorizontalAlignment="Left" Margin="400,221,0,0" VerticalAlignment="Top" Height="40" Width="140" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Loaded="SetUpTimer" Grid.Column="1"/>
     </Grid>
 </UserControl>

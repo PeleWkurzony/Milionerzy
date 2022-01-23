@@ -33,7 +33,7 @@ namespace Milionerzy.Windows {
         }
 
         private void ui_exit_Click(object sender, RoutedEventArgs e) {
-
+            parent.Close();
         }
 
         
