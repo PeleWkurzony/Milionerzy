@@ -67,6 +67,10 @@ namespace Milionerzy.Scripts {
             questions.RemoveAt(random);
             return toReturn;
         }
+        /// <summary>
+        /// Zapisuje wynik gracza w bazie danych MySql
+        /// </summary>
+        /// <param name="result"> Obiekt Result zawierający wszystkie informacje o rozgrywce gracza </param>
         public void SaveResult(Result result) {
             try {
 
@@ -89,6 +93,14 @@ namespace Milionerzy.Scripts {
                 w.Show();
             }
         }
+        /// <summary>
+        /// Funkcja zwraca liste 4 - elementową zawierającą 2 najlepsze wyniki (dwa pierwsze) 
+        /// oraz 2 najgorsze wyniki (dwa ostatnie)
+        /// </summary>
+        /// <param name="number"> Liczba rund jaką gracz rozegrał zanim przegrał </param>
+        /// <returns> Lista obiektów Stats zawierająca informacje o 2 najlepszych wynikach (dwa pierwsze) 
+        /// i 2 najgorszych (dwa ostatnie)
+        /// </returns>
         public List<Stats> GetStats(uint number) {
             var list = new List<Stats>();
             try {

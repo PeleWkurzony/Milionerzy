@@ -25,13 +25,21 @@ namespace Milionerzy.Windows {
             this.parent = parent; 
         }
 
+        /// <summary>
+        /// Zmienia UI na ekran startu gry
+        /// </summary>
         private void ui_start_game_Click(object sender, RoutedEventArgs e) {
             parent.SwitchTo(parent.UCstartGame);
         }
+        /// <summary>
+        /// Zmienia UI na ekran z twórcami
+        /// </summary>
         private void ui_credits_Click(object sender, RoutedEventArgs e) {
             parent.SwitchTo(parent.UCcredits);
         }
-
+        /// <summary>
+        /// Wychodzi z milionerów
+        /// </summary>
         private void ui_exit_Click(object sender, RoutedEventArgs e) {
             parent.Close();
         }

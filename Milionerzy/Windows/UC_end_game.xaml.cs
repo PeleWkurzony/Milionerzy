@@ -20,20 +20,44 @@ namespace Milionerzy.Windows {
     /// </summary>
     public partial class UC_end_game : UserControl {
         
+        /// <summary>
+        /// Klasa przechowująca statystyki końcowe gracza
+        /// </summary>
         public class Stats {
+            /// <summary>
+            /// Konstruktor klasy Stats przypisujący dane obiektowi
+            /// </summary>
+            /// <param name="name"> Nazwa gracza </param>
+            /// <param name="time"> Czas rozgrywki </param>
+            /// <param name="number"> Liczba poprawnych odpowiedzi </param>
             public Stats(String name, ulong time, uint number) {
                 this.name = name;
                 this.time = time;
                 this.number = number;
             }
+            /// <summary>
+            /// Nazwa gracza
+            /// </summary>
             public String name;
+            /// <summary>
+            /// Czas rozgrywki
+            /// </summary>
             public ulong time;
+            /// <summary>
+            /// Liczba poprawnych odpowiedzi
+            /// </summary>
             public uint number;
         }
         
         MainWindow parent;
 
+        /// <summary>
+        /// Kontroler służący do komunikacji z bazą danych
+        /// </summary>
         private DB_controller controller;
+        /// <summary>
+        /// Obiekt służący do przechowywania wyniku końcowego gracza
+        /// </summary>
         private Result result;
 
         public UC_end_game(MainWindow parent) {
@@ -44,6 +68,10 @@ namespace Milionerzy.Windows {
         private void ui_back_button_Click(object sender, RoutedEventArgs e) {
             parent.Close();
         }
+        /// <summary>
+        /// Funkcja wyświetlająca wynik gracza oraz dane z bazy danych na tabeli końcowej
+        /// </summary>
+        /// <param name="result"> Wynik gracza </param>
         private void PrintBoard(Result result) {
             List<Stats> stats = controller.GetStats(result.questionNumer);
             List<List<TextBox>> list = new List<List<TextBox>> {

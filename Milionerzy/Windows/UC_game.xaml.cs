@@ -26,15 +26,29 @@ namespace Milionerzy.Windows {
 
         public MainWindow parent;
 
+        /// <summary>
+        /// Kontroler służący do komunikacji z bazą danych
+        /// </summary>
         private DB_controller controller;
 
+        /// <summary>
+        /// Obiekt przechowujący aktualne pytanie
+        /// </summary>
         private Question? question;
+        /// <summary>
+        /// Lista elementów UI zawierających odpowiedzi
+        /// </summary>
         private List<Button> buttons;
+        /// <summary>
+        /// Pozycja na liście buttons poprawnej odpowiedzi
+        /// </summary>
         private int correctAnswerPos;
 
-        private bool fiftyFifty = true;
-        private bool audienceQuestion = true;
-        private bool friendsTalk = true;
+        /// Nie używane
+        //private bool fiftyFifty = true;
+        //private bool audienceQuestion = true;
+        //private bool friendsTalk = true;
+        /// Nie używane
 
         private double time = 0;
         private bool canAnswer = true;
@@ -50,6 +64,10 @@ namespace Milionerzy.Windows {
             controller = new DB_controller();
             buttons = new List<Button> { ui_answer_a, ui_answer_b, ui_answer_c, ui_answer_d };
         }
+        /// <summary>
+        /// Tworzy obiekt Result zawierający wynik końcowy rozgrywki
+        /// </summary>
+        /// <returns> Zwraca obiekt Result zawierający wynik końcowy rozgrywki </returns>
         public Result GetResult() {
             Result result = new Result();
             result.time = time;
@@ -60,6 +78,10 @@ namespace Milionerzy.Windows {
             return result;
 
         }
+        /// <summary>
+        /// Ustawia możliwe odopowiedzi w odpowiednich miejscach oraz wyświetla je na ekranie
+        /// </summary>
+        /// <param name="question"> Pytanie, które ma zostać wyświetlone </param>
         private void SetUpAnswers(Question question) {
             this.Dispatcher.Invoke(() => {
                 var generator = new Random();
@@ -77,6 +99,9 @@ namespace Milionerzy.Windows {
                 }
             });
         }
+        /// <summary>
+        /// Pobiera wszystkie pytania z bazy danych oraz ustawia nazwę gracza
+        /// </summary>
         private void LoadQuestion(object? sender, RoutedEventArgs? e) {
             this.Dispatcher.Invoke(() => {
                 nickname = parent.UCstartGame.ui_nickname.Text;
@@ -85,6 +110,9 @@ namespace Milionerzy.Windows {
                 ui_question.Text = question.pytanie;
             });
         }
+        /// <summary>
+        /// Ustawia zegar i wszystkie ustawienia związane z nim
+        /// </summary>
         private void SetUpTimer(object sender, RoutedEventArgs e) {
             timer = new Timer(1000);
             timer.Interval = 1000;
@@ -92,6 +120,9 @@ namespace Milionerzy.Windows {
             timer.AutoReset = true;
             timer.Enabled = true;
         }
+        /// <summary>
+        /// Funkcja zmieniająca czas zegaru oraz wyświetlająca informacje na ekranie
+        /// </summary>
         private void OnTimerChange(object? sender, EventArgs? e) {
             try {
                 this.Dispatcher.Invoke(() => {
@@ -111,6 +142,10 @@ namespace Milionerzy.Windows {
                 });
             } catch (Exception) { }
         }
+        /// <summary>
+        /// Funkcja sprawdzająca wybraną odpowiedź
+        /// </summary>
+        /// <param name="button"> Numer przycisku, który został wybrany </param>
         private void CheckAnswer(int button) {
             this.Dispatcher.Invoke(() => { 
                 if (!canAnswer) return;
