@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label Content="MATEUSZ BAŃSKI &#xA;PRZEMYSŁAW JADESZKO" HorizontalAlignment="Stretch" Height="140" Margin="0,145,0,0" VerticalAlignment="Top" Width="780" HorizontalContentAlignment="Center" FontSize="36" Foreground="White" VerticalContentAlignment="Top" FontFamily="Bahnschrift SemiBold" FontWeight="Bold"/>
+        <Label Content="Mateusz Bański &#xD;&#xA;Przemysław Jadeszko" HorizontalAlignment="Center" Height="140" Margin="0,155,0,0" VerticalAlignment="Top" Width="780" HorizontalContentAlignment="Center" FontSize="36" Foreground="White" VerticalContentAlignment="Top"/>
         <Button x:Name="ui_back_button" Content="&lt;-" HorizontalAlignment="Left" Margin="100,0,0,50" VerticalAlignment="Bottom" Height="50" Width="50" Background="#66DDDDDD" Foreground="White" Click="ui_back_button_Click" FontSize="24" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="1.1,0.3" Cursor="Hand"/>
     </Grid>
 </UserControl>

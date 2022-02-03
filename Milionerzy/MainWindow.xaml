@@ -5,12 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Milionerzy"
         mc:Ignorable="d"
-        Title="Milionerzy" Height="480" Width="800" HorizontalAlignment="Stretch" WindowStartupLocation="Manual">
+        Title="MainWindow" Height="500" Width="800" HorizontalAlignment="Stretch">
     <Window.Resources>
         <Style x:Key="GridStyle1" TargetType="{x:Type Grid}"/>
     </Window.Resources>
     <Grid Style="{DynamicResource GridStyle1}">
-        <MediaElement LoadedBehavior="Play" UnloadedBehavior="Manual" Name="mp4" Source="./images/background.mp4" MediaEnded="on_media_end" />
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="/images/background.jpg"/>
+        </Grid.Background>
         <Grid x:Name="userContent">
             
         </Grid>

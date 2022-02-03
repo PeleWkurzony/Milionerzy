@@ -10,13 +10,6 @@
 
   <ItemGroup>
     <None Remove="images\background.jpg" />
-    <None Remove="images\background.mp4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="images\background.mp4">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
