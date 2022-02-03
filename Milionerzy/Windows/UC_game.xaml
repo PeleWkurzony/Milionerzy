@@ -12,38 +12,38 @@
             <ColumnDefinition Width="31*"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="ui_timer" Content="Czas: 00:00" HorizontalAlignment="Left" Margin="80,50,0,0" VerticalAlignment="Top" Height="58" Width="160" Foreground="White" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Loaded="SetUpTimer" Grid.ColumnSpan="2"/>
-        <!--<Grid HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,80,0" Grid.Column="1">
-            <Button x:Name="ui_powerup_222_Copy" Margin="90,0,0,0" Height="34" Width="35" VerticalAlignment="Center" HorizontalAlignment="Left">
+        <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,80,0" Grid.Column="1">
+            <Button Click="ui_next_question_Click" x:Name="ui_next_question" Margin="90,0,0,0" Height="34" Width="35" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="20"/>
                     </Style>
                 </Button.Resources>
                 <StackPanel>
-                    <TextBlock><Run Text="Cannot load image"/></TextBlock>
+                    <TextBlock>↺</TextBlock>
                 </StackPanel>
             </Button>
-            <Button x:Name="ui_powerup_222_Copy1" Margin="44,0,0,0" Height="34" Width="36" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <Button Click="ui_half_Click" x:Name="ui_half" Margin="44,0,0,0" Height="34" Width="36" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="20"/>
                     </Style>
                 </Button.Resources>
                 <StackPanel>
-                    <TextBlock><Run Text="Cannot load image"/></TextBlock>
+                    <TextBlock>2/2</TextBlock>
                 </StackPanel>
             </Button>
-            <Button x:Name="ui_powerup_222_Copy2" Height="34" Width="35" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <Button Click="ui_audience_question_Click" x:Name="ui_audience_question" Height="34" Width="35" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="20"/>
                     </Style>
                 </Button.Resources>
                 <StackPanel>
-                    <TextBlock><Run Text="Cannot load image"/></TextBlock>
+                    <TextBlock>📞</TextBlock>
                 </StackPanel>
             </Button>
-        </Grid>-->
+        </Grid>
         <Button x:Name="ui_answer_c" Content="Button" Margin="80,367,0,0" Height="35" Width="260" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#99DDDDDD" Click="ui_answer_c_Click" Grid.ColumnSpan="2" Cursor="Hand">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
