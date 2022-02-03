@@ -84,13 +84,6 @@ namespace Milionerzy.Scripts {
                 conn.Close();
 
             } catch (Exception e) {
-                Window w = new Window();
-                w.Height = 300;
-                w.Width = 300;
-                var txt = new TextBox();
-                txt.Text = e.Message;
-                w.Content = txt;
-                w.Show();
             }
         }
         /// <summary>

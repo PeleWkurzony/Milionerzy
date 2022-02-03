@@ -38,6 +38,7 @@ namespace Milionerzy
             UCgame = new UC_game(this);
             UCendGame = new UC_end_game(this);
             ReturnToMenu();
+            
         }
         /// <summary>
         /// Przechodzi do kontrolek Menu
@@ -57,6 +58,12 @@ namespace Milionerzy
                 this.userContent.Children.Clear();
                 this.userContent.Children.Add(userControl);
             });
+        }
+
+        private void on_media_end(object sender, RoutedEventArgs e)
+        {
+            mp4.Position = new TimeSpan(0, 0, 1);
+            mp4.Play();
         }
 
     }
