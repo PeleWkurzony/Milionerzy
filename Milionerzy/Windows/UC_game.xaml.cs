@@ -123,10 +123,11 @@ namespace Milionerzy.Windows
                     foreach (Button button in buttons)
                     {
                         button.IsEnabled = true;
-                        lastQuestionHave = false;
                     }
+                    lastQuestionHave = false;
                 }
-                nickname = parent.UCstartGame.ui_nickname.Text;
+                if (nickname == null)
+                    nickname = parent.UCstartGame.ui_nickname.Text;
                 question = controller.GetQuestion();
                 SetUpAnswers(question);
                 ui_question.Text = question.pytanie;
@@ -183,7 +184,7 @@ namespace Milionerzy.Windows
                 if (!canAnswer) return;
                 canAnswer = false;
                 chosenAnswer = button;
-                //For wrong answer
+                //Dla złej odpowiedzi
                 if (button != correctAnswerPos)
                 {
                     timer.Stop();
@@ -194,7 +195,7 @@ namespace Milionerzy.Windows
                         this.parent.SwitchTo(parent.UCendGame);
                     });
                 }
-                //For good answer
+                //Dla dobrej odpowiedzi
                 else
                 {
                     buttons[button].Background = new SolidColorBrush(Color.FromArgb(200, 0xC0, 0xFF, 0));

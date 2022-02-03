@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
     <Grid Margin="-10,-20,10,20">
-        <Button x:Name="ui_start_game" Content="Rozpocznij grę" HorizontalAlignment="Center" Margin="0,335,0,0" VerticalAlignment="Top" Height="40" Width="180" Background="#66DDDDDD" Foreground="White" Click="ui_start_game_Click" Cursor="Hand"/>
+        <Button x:Name="ui_start_game" Content="Rozpocznij grę" HorizontalAlignment="Center" Margin="0,335,0,0" VerticalAlignment="Top" Height="40" Width="180" Background="#66DDDDDD" Foreground="White" Click="ui_start_game_Click" Cursor="Hand" IsDefault="True"/>
         <TextBox x:Name="ui_nickname" HorizontalAlignment="Center" Margin="0,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="20" Background="#66FFFFFF" TextAlignment="Left" Foreground="White"/>
         <Label x:Name="ui_label" Content="Wprowadź nazwę&#xD;&#xA;" HorizontalAlignment="Center" Margin="0,120,0,0" VerticalAlignment="Top" Height="130" Width="460" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="36"/>
         <Button x:Name="ui_back_button" Content="&lt;-" HorizontalAlignment="Left" Margin="100,0,0,50" VerticalAlignment="Bottom" Height="50" Width="50" Background="#66DDDDDD" Foreground="White" Click="ui_back_button_Click" FontSize="24" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="1.1,0.3" Cursor="Hand"/>
