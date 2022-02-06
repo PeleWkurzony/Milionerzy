@@ -8,8 +8,11 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Label x:Name="Logo" Content="MILIONERZY" HorizontalAlignment="Center" Margin="0,29,0,0" VerticalAlignment="Top" Height="140" Width="460" FontSize="48" FontWeight="Bold" FontStyle="Normal" FontStretch="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontFamily="Lucida Fax"/>
-        <Button x:Name="ui_start_game" Content="Rozpocznij grę" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" Height="40" Width="180" Background="#66DDDDDD" Foreground="White" Click="ui_start_game_Click" Cursor="Hand"/>
+        <Button x:Name="ui_start_game" Content="Rozpocznij grę" HorizontalAlignment="Center" Margin="0,245,0,0" VerticalAlignment="Top" Height="40" Width="180" Background="#66DDDDDD" Foreground="White" Click="ui_start_game_Click" Cursor="Hand"/>
         <Button x:Name="ui_exit" Content="Wyjdź z gry" HorizontalAlignment="Center" Margin="0,352,0,0" VerticalAlignment="Top" Height="40" Width="180" Background="#66DDDDDD" Foreground="White" Click="ui_exit_Click" Cursor="Hand"/>
-        <Button x:Name="ui_credits" Content="Autorzy" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="180" Background="#66DDDDDD" Foreground="White" Click="ui_credits_Click" Margin="0,295,0,0" Cursor="Hand"/>
+        <Grid HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Height="40" Width="180">
+            <Button x:Name="ui_settings" Content="⚙&#xA;" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#66DDDDDD" Foreground="White" Click="ui_settings_Click" Cursor="Hand" FontSize="24" FontWeight="Normal" FontStyle="Normal" Margin="120,0,0,0" Width="60"/>
+            <Button x:Name="ui_credits" Content="Autorzy" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="110" Background="#66DDDDDD" Foreground="White" Click="ui_credits_Click" Cursor="Hand"/>
+        </Grid>
     </Grid>
 </UserControl>

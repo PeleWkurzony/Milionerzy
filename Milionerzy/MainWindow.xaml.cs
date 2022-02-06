@@ -29,6 +29,8 @@ namespace Milionerzy
         public UC_credits UCcredits;
         public UC_game UCgame;
         public UC_end_game UCendGame;
+        public UC_settings UCsettings;
+        public DB_controller DBcontroller;
 
         public MainWindow() {
             InitializeComponent();
@@ -36,9 +38,11 @@ namespace Milionerzy
             UCstartGame = new UC_start_game(this);
             UCcredits = new UC_credits(this);
             UCgame = new UC_game(this);
-            UCendGame = new UC_end_game(this);
+            UCendGame = new UC_end_game(this);   
+            DBcontroller = new DB_controller();
+            UCsettings = new UC_settings(this);
             ReturnToMenu();
-            
+            on_media_end(null, null);
         }
         /// <summary>
         /// Przechodzi do kontrolek Menu

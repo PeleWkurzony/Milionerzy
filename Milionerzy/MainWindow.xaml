@@ -10,7 +10,7 @@
         <Style x:Key="GridStyle1" TargetType="{x:Type Grid}"/>
     </Window.Resources>
     <Grid Style="{DynamicResource GridStyle1}">
-        <MediaElement LoadedBehavior="Play" UnloadedBehavior="Manual" Name="mp4" Source="./images/background.mp4" MediaEnded="on_media_end" />
+        <MediaElement LoadedBehavior="Manual" UnloadedBehavior="Manual" Name="mp4" Source="./images/background.mp4" MediaEnded="on_media_end" />
         <Grid x:Name="userContent">
             
         </Grid>

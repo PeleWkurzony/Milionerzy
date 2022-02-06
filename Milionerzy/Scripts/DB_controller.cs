@@ -34,7 +34,11 @@ namespace Milionerzy.Scripts {
         /// <summary>
         /// Sformatowany string zawierający wszyskie informacje o bazie danych
         /// </summary>
-        private String connStr = "";
+        private static String connStr = "";
+        /// <summary>
+        /// Czy zapisywać wynik gracza w bazie danych
+        /// </summary>
+        public static bool saveResult = true;
 
         /*  -----------------------------------------------------------------------------------------------------
          * 
@@ -42,6 +46,26 @@ namespace Milionerzy.Scripts {
          * 
          *  -----------------------------------------------------------------------------------------------------   
          */
+        /// <summary>
+        /// Zmienia wartość flagi saveResult
+        /// </summary>
+        /// <param name="flag"> nowa wartość dla flagi saveResult </param>
+        public void ChangeSaving(bool flag) {
+            try {
+                saveResult = flag;
+            } catch { }
+        }
+        /// <summary>
+        /// Zmienia ustawienia połączenia z bazą danych
+        /// </summary>
+        /// <param name="host"> Adres serwera bazy danych { domyślnie: localhost } </param>
+        /// <param name="user"> Nazwa użytkownika bazy danych { domyślnie: root }</param>
+        /// <param name="database"> Baza zawierająca tabele { domyślnie: milionerzy }</param>
+        /// <param name="port"> Port dla bazy danych MySQL { domyślnie: 3306 }</param>
+        /// <param name="password"> Hasło do bazy danych { domyślnie: }</param>
+        public void ChangeConnectionString(String host, String user, String database, String port, String password) {
+            connStr = "server=" + host + ";user=" + user + ";database=" + database + ";port=" + port + ";password=" + password;
+        }
         /// <summary>
         /// Tworzy kontroler do zarządzania bazą danych MySQL
         /// </summary>
@@ -51,7 +75,7 @@ namespace Milionerzy.Scripts {
         /// <param name="port"> Port dla bazy danych MySQL { domyślnie: 3306 }</param>
         /// <param name="password"> Hasło do bazy danych { domyślnie: }</param>
         public DB_controller(String host = "localhost", String user = "root", String database = "milionerzy", String port = "3306", String password = "") {
-            connStr = "server=" + host + ";user=" + user + ";database=" + database + ";port=" + port + ";password=" + password;
+            ChangeConnectionString(host, user, database, port, password);
             DownloadQuestions();
         }
         /// <summary>
@@ -72,6 +96,7 @@ namespace Milionerzy.Scripts {
         /// </summary>
         /// <param name="result"> Obiekt Result zawierający wszystkie informacje o rozgrywce gracza </param>
         public void SaveResult(Result result) {
+            if (!saveResult) return;
             try {
 
                 var conn = new MySqlConnection(connStr);
@@ -125,14 +150,43 @@ namespace Milionerzy.Scripts {
 
             } catch (Exception e) {
                 Window w = new Window();
-                w.Height = 300;
-                w.Width = 300;
+                w.Height = 100;
+                w.Width = 600;
                 var txt = new TextBox();
                 txt.Text = e.Message;
                 w.Content = txt;
                 w.Show();
             }
             return list;
+        }
+        /// <summary>
+        /// Pobiera wszystkie pytania z bazy danych i zapisuje je w zmiennej questions
+        /// </summary>
+        /// <returns> Zwraca true w przypadku pełnego powodzenia </returns>
+        public bool DownloadQuestions() {
+            try {
+
+                var conn = new MySqlConnection(connStr);
+                conn.Open();
+                String sql = "SELECT ID, pytanie, poprawna, npoprawna1, npoprawna2, npoprawna3 FROM milionerzy" + PrintList();
+                var command = new MySqlCommand(sql, conn);
+                var dataReader = command.ExecuteReader();
+                while (dataReader.Read()) {
+                    questions.Add(new Question(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), new String[] { dataReader.GetString(3), dataReader.GetString(4), dataReader.GetString(5) }));
+                }
+                conn.Close();
+
+            } catch (Exception e) {
+                Window w = new Window();
+                w.Height = 100;
+                w.Width = 600;
+                var txt = new TextBox();
+                txt.Text = e.Message;
+                w.Content = txt;
+                w.Show();
+                return false;
+            }
+            return true;
         }
         /*  -----------------------------------------------------------------------------------------------------
          * 
@@ -158,34 +212,6 @@ namespace Milionerzy.Scripts {
                 return "";
             }
         }
-        /// <summary>
-        /// Pobiera wszystkie pytania z bazy danych i zapisuje je w zmiennej questions
-        /// </summary>
-        /// <returns> Zwraca true w przypadku pełnego powodzenia </returns>
-        private bool DownloadQuestions() {
-            try {
-                
-                var conn = new MySqlConnection(connStr);
-                conn.Open();
-                String sql = "SELECT ID, pytanie, poprawna, npoprawna1, npoprawna2, npoprawna3 FROM milionerzy" + PrintList();
-                var command = new MySqlCommand(sql, conn);
-                var dataReader = command.ExecuteReader();
-                while (dataReader.Read()) {
-                    questions.Add(new Question(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), new String[] { dataReader.GetString(3), dataReader.GetString(4), dataReader.GetString(5) }));
-                }
-                conn.Close();
-
-            } catch (Exception e) {
-                Window w = new Window();
-                w.Height = 300;
-                w.Width = 300;
-                var txt = new TextBox();
-                txt.Text = e.Message;
-                w.Content = txt;
-                w.Show();
-                return false;
-            }
-            return true;
-        }
+        
     }
 }
