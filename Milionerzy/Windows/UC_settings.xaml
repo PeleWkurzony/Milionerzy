@@ -9,7 +9,7 @@
     <Grid>
         <Button x:Name="ui_back_button" Content="&lt;-" HorizontalAlignment="Left" Margin="100,0,0,50" VerticalAlignment="Bottom" Height="50" Width="50" Background="#66DDDDDD" Foreground="White" Click="ui_back_button_Click" FontSize="24" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="1.1,0.3" Cursor="Hand"/>
         <Grid x:Name="grid_audio" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#66DDDDDD" Margin="100,115,0,0" Width="175" Height="35">
-            <CheckBox x:Name="ui_audio_checkbox" Content="Dźwięk" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" IsChecked="True" Checked="ui_audio_checkbox_Click" Unchecked="ui_audio_checkbox_Click" Cursor="Hand"/>
+            <CheckBox x:Name="ui_audio_checkbox" Content="Dźwięk" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Checked="ui_audio_checkbox_Click" Unchecked="ui_audio_checkbox_Click" Cursor="Hand"/>
         </Grid>
         <Grid x:Name="grid_database_saving" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#66DDDDDD" Margin="100,155,0,0" Width="175" Height="35">
             <CheckBox x:Name="ui_database_saving_checkbox" Content="Zapisuj wynik do bazy" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" IsChecked="True" Checked="ui_database_saving_checkbox_Click" Unchecked="ui_database_saving_checkbox_Click" Cursor="Hand"/>
